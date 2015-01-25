@@ -19,14 +19,11 @@ class CLI_Xf_Addon_Export extends CLI
 		$addonId = $this->getOption('addon-id');
 		if ( ! $addonId)
 		{
-			$config = XfCli_Application::getConfig();
-			if ( ! $config OR empty($config->addon_config))
+			$addonId = XfCli_Application::getConfig()->addon->id;
+			if ( ! $addonId)
 			{
 				$this->bail('There is no addon selected and the --addon-id is not set');
 			}
-
-			$addonConfig = XfCli_Application::loadConfigJson($config->addon_config);
-			$addonId = $addonConfig->addon->id;
 		}
 
 		$addonModel = XenForo_Model::create('XenForo_Model_AddOn');
@@ -54,7 +51,15 @@ class CLI_Xf_Addon_Export extends CLI
 
 		if (XenForo_Helper_File::getFileExtension($path) != 'xml')
 		{
-			$path .= DIRECTORY_SEPARATOR . 'addon-' . $addon['addon_id'] . '.xml';
+			if (substr($path, strlen($path)-1) != DIRECTORY_SEPARATOR)
+			{
+				$path .= DIRECTORY_SEPARATOR . 'addon-' . $addon['addon_id'] . '.xml';
+			}
+			else
+			{
+				$path .= 'addon-' . $addon['addon_id'] . '.xml';
+			}
+
 		}
 
 

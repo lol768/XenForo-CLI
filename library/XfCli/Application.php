@@ -141,7 +141,7 @@ class XfCli_Application
 	 * 
 	 * @param  string $filepath
 	 * 
-	 * @return array           
+	 * @return object
 	 */
 	public static function loadConfigJson($filepath)
 	{
