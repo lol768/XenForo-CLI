@@ -22,7 +22,7 @@ Or use `git submodule update --init --recursive` if you already cloned it and fo
 
 Temporarily: ```export PATH=$PATH:`pwd` ```
 
-Permanently: Edit .bashrc or similar and add `export PATH=$PATH:/directory/to/repo/here`
+Permanently: Edit .bashrc or similar and add `export PATH=$PATH:/path/to/repo/here`
 
 **Enter XenForo root directory**
 
