@@ -20,7 +20,7 @@ Or use `git submodule update --init --recursive` if you already cloned it and fo
 
 **Add repository directory to PATH environmental variable**
 
-Temporarily: `export PATH=$PATH:\`pwd\``
+Temporarily: ```export PATH=$PATH:`pwd` ```
 
 Permanently: Edit .bashrc or similar and add `export PATH=$PATH:/directory/to/repo/here`
 
