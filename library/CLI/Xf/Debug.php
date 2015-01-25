@@ -22,11 +22,11 @@ class CLI_Xf_Debug extends CLI {
 		$debugMode = XenForo_Application::debugMode();
 		if ($debugMode)
 		{
-			$this->printMessage("Debug mode is enabled.");
+			$this->printMessage($this->colorText("Debug mode is enabled.", parent::GREEN));
 		}
 		else
 		{
-			$this->printMessage("Debug mode is disabled.");
+			$this->printMessage($this->colorText("Debug mode is disabled.", parent::YELLOW));
 		}
 	}
 	

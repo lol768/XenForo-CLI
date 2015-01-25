@@ -5,6 +5,17 @@
  */
 class CLI_Xf_Addon_Show extends CLI
 {
+
+	protected $_help = '
+		usage: addon show [addon_id] [--details]
+
+		--details
+			Can be used as a flag or option. When used as a flag, all additional details are displayed in a series of
+			tables. When used as an option, a list of comma-separated details should be passed in.
+
+			Example: --details=AdminNavigation
+
+	';
 	
 	// Database entries that are related to addons
 	protected $_dataEntries = array(
@@ -113,7 +124,7 @@ class CLI_Xf_Addon_Show extends CLI
 		$haddon = array(
 			array($this->colorText('Title:', self::BOLD), 	$addon['title']),
 			array($this->colorText('ID:', self::BOLD),		$addon['addon_id']),
-			array($this->colorText('Version:', self::BOLD), $addon['version_string']),
+			array($this->colorText('Version:', self::BOLD), '"' . $addon['version_string'] . "\" (id=" . $addon['version_id'] . ")"),
 			array($this->colorText('Status:', self::BOLD),	$addon['active'] ? 'Enabled' : $this->colorText('Disabled', self::RED))
 		);
 		
@@ -122,8 +133,9 @@ class CLI_Xf_Addon_Show extends CLI
 		{
 			$haddon[] = array($this->colorText('Config File:', self::BOLD), $addon['config_file']);
 		}
-		
 		// Print info table
+
+		$this->printHeading("Basic details");
 		$this->printTable($haddon, '', false);
 		$this->printEmptyLine();
 		
@@ -135,10 +147,10 @@ class CLI_Xf_Addon_Show extends CLI
 			
 			if ($entry['stat'])
 			{
-				$stats[] = array($entry['title'], $entry['stat']);
+				$stats[] = array($this->colorText($entry['title'] . ':', self::BOLD), $entry['stat']);
 			}
 		}
-		
+		$this->printHeading("Statistics");
 		$this->printTable($stats, '', false);
 		
 		// Check if we want to print database entry details
@@ -166,14 +178,8 @@ class CLI_Xf_Addon_Show extends CLI
 				$this->printEmptyLine(2);
 				
 				$string = 'Details for: ' . $entry['title'];
-				$this->printMessage($this->colorText($string, self::BOLD));
-				
-				$print = '';
-				for ($c=0;$c<strlen($string); $c++) {
-					$print .= '=';
-				}
-				
-				$this->printMessage($print);
+				$this->printHeading($string);
+
 				
 				$this->printTable($entry['data']);
 			}
@@ -332,5 +338,4 @@ class CLI_Xf_Addon_Show extends CLI
 	{
 		return $this->callbackRoutePrefix($addonId, $stat, 'admin');
 	}
-	
 }

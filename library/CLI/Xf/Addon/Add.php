@@ -86,9 +86,11 @@ class CLI_Xf_Addon_Add extends CLI
 		{
 			
 			$dw = XenForo_DataWriter::create('XenForo_DataWriter_AddOn');
+			/** @see XenForo_DataWriter_AddOn */
 			$dw->bulkSet(array(
-				'addon_id'	=> $addon->id,
-				'title'   	=> $addon->name
+				'addon_id'			=> $addon->id,
+				'title'				=> $addon->name,
+				"version_string"	=> "0.1" //sensible default for semver & other schemes
 			));
 			$dw->save();
 			

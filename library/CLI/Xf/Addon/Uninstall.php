@@ -102,7 +102,7 @@ class CLI_Xf_Addon_Uninstall extends CLI
 		
 		// Done
 		$this->printEmptyLine();
-		$this->printMessage('Addon delete');
+		$this->printMessage('Addon deleted');
 		
 	}
 	

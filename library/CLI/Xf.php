@@ -6,13 +6,15 @@
 class CLI_Xf extends CLI
 {
 
+	protected $_versionString = "1.1f";
+	protected $_versionId = 11;
+
 	protected $_help = '
 		Possible commands:
 		
-		(you can execute these commands with --help to view their instructions)
+		(You can execute these commands with --help to view their instructions)
 
 			<cg><b>Addons<cn>
-		
 				- addon
 				- addon add
 				- addon import
@@ -23,7 +25,6 @@ class CLI_Xf extends CLI
 				- addon uninstall
 			
 			<cg><b>Code Events<cn>
-			
 				- extend
 				- extend add
 				- extend delete
@@ -31,22 +32,19 @@ class CLI_Xf extends CLI
 				- listener delete
 			
 			<cg><b>Phrases<cn>
-			
 				- phrase add
 				- phrase find
 				- phrase get
 			
 			<cg><b>Templates<cn>
-			
 				- template add
 			
 			<cg><b>Routes<cn>
-			
 				- route add
 
-			<cg><b>System<cn>
-
+			<cg><b>XenForo System<cn>
 				- debug
+				- debug toggle
 	';
 	
 	/**
@@ -73,6 +71,8 @@ class CLI_Xf extends CLI
 		}
 		else
 		{
+			$this->printVersionInfo();
+			$this->printHeading("Help");
 			$this->showHelp();
 		}
 		
@@ -132,5 +132,34 @@ class CLI_Xf extends CLI
 		}
 
 		return $config;
+	}
+
+	/**
+	 * Prints out the title of the tool and its version.
+	 */
+	protected function printVersionInfo() {
+		// Why don't I just submit a PR instead of forking the tool? a) I don't think the project is active anymore,
+		// b) Some of my changes might not be written well enough/deemed useful enough to include upstream
+		$xfVer = XenForo_Application::$version;
+		$this->printHeading("Version info");
+		$this->printMessage("XenForo-CLI by Naatan and robclancy. Forked by lol768." . PHP_EOL . "Running CLI version " . $this->_versionString . " on XenForo $xfVer." . PHP_EOL);
+
+	}
+
+	/**
+	 * Prints a pretty heading
+	 * @param string $string Heading title
+	 * @return void
+	 */
+	protected  function printHeading($string)
+	{
+		$this->printMessage($this->colorText($string, self::BOLD));
+
+		$print = '';
+		for ($c = 0; $c < strlen($string); $c++)
+		{
+			$print .= '=';
+		}
+		$this->printMessage($print);
 	}
 }

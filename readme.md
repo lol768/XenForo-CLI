@@ -62,6 +62,7 @@ Addons
  * addon select
  * addon show
  * addon uninstall
+ * addon export
 
 Code Events
 
@@ -87,7 +88,6 @@ Routes
 
 ## Todo
 
- * addon export
  * listener delete
  * extend delete
  * phrase delete

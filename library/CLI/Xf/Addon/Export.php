@@ -30,6 +30,7 @@ class CLI_Xf_Addon_Export extends CLI
 		}
 
 		$addonModel = XenForo_Model::create('XenForo_Model_AddOn');
+		/** @var XenForo_Model_AddOn $addonModel */
 		$addon = $addonModel->getAddonById($addonId);
 		if ( ! $addon)
 		{
@@ -38,13 +39,34 @@ class CLI_Xf_Addon_Export extends CLI
 
 		$xml = $addonModel->getAddOnXml($addon)->saveXml();
 
+		if (!file_exists($path))
+		{
+			$this->printInfo($this->colorText('Warning! Specified path does not exist, attempting to create directories...', parent::YELLOW));
+			try
+			{
+				mkdir($path, 0777, true);
+			}
+			catch (Exception $e)
+			{
+				$this->printInfo($this->colorText('Directories could not be created for ' . $path . PHP_EOL . "Check permissions and try again.", parent::RED));
+			}
+		}
+
 		if (XenForo_Helper_File::getFileExtension($path) != 'xml')
 		{
 			$path .= DIRECTORY_SEPARATOR . 'addon-' . $addon['addon_id'] . '.xml';
 		}
 
-		// TODO: permissions checks, folder exists checks etc
-		file_put_contents($path, $xml);
-		$this->printInfo('File written to ' . $path);
+
+		try
+		{
+			file_put_contents($path, $xml);
+			$this->printInfo($this->colorText('File written to ' . $path, parent::GREEN));
+		}
+		catch (Exception $e)
+		{
+			$this->printInfo($this->colorText('File could not be written to ' . $path . PHP_EOL . "Check permissions and try again.", parent::RED));
+		}
+
 	}
 }
