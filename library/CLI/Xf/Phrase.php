@@ -21,7 +21,7 @@ class CLI_Xf_Phrase extends CLI {
 	
 	public function run()
 	{
-		$this->runGet(false);
+		$this->showHelp();
 	}
 	
 }

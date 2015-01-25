@@ -32,6 +32,7 @@ class CLI_Xf_Phrase_Find extends CLI
 		}
 		
 		$phraseModel = XenForo_Model::create('XenForo_Model_Phrase');
+		/** @var $phraseModel XenForo_Model_Phrase */
 		
 		if ($this->hasFlag('exact'))
 		{
