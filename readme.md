@@ -4,6 +4,34 @@ XenForo-CLI (XfCli) is a command line interface for XenForo. It was created to a
 for developers to interact with the XenForo Admin Panel or mess around in their file manager while
 developing their addons. 
 
+## Installation
+
+<!-- TODO: change to point at upstream if PRing -->
+
+**Clone the repository and its submodules**
+
+`git clone --recursive git@github.com:lol768/XenForo-CLI.git`
+
+Or use `git submodule update --init --recursive` if you already cloned it and forgot to use --recursive.
+
+**Enter the newly made directory**
+
+`cd XenForo-CLI`
+
+**Add repository directory to PATH environmental variable**
+
+Temporarily: `export PATH=$PATH:\`pwd\``
+
+Permanently: Edit .bashrc or similar and add `export PATH=$PATH:/directory/to/repo/here`
+
+**Enter XenForo root directory**
+
+`cd /var/www/XenForo/`
+
+**Use the xf command**
+
+`xf`
+
 ## Why?
 
 While XenForo provides a very useful user interface for managing many of the processes involved in
