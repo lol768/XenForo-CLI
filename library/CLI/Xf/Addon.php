@@ -6,7 +6,7 @@ class CLI_Xf_Addon extends CLI
 	protected $_help = '
 		Possible commands:
 		
-		(you can excute these commands with --help to view their instructions)
+		(you can execute these commands with --help to view their instructions)
 		
 		xf addon ..
 			- add
@@ -19,7 +19,7 @@ class CLI_Xf_Addon extends CLI
 	';
 	
 	/**
-	 * @var array	Cached addons whose details have already been retreived
+	 * @var array	Cached addons whose details have already been retrieved
 	 */
 	protected $_addons = array();
 	
@@ -30,7 +30,15 @@ class CLI_Xf_Addon extends CLI
 	 */
 	public function run()
 	{
-		$this->printMessage("Active Addon: " . XfCli_Application::getConfig()->addon->name);
+		$activeAddon = XfCli_Application::getConfig()->addon;
+		if ($activeAddon->name == null)
+		{
+			$this->printMessage("No addon is currently selected. Use `xf addon select <addon_id>` to select an addon.");
+		}
+		else
+		{
+			$this->printMessage("Active Addon: " . $activeAddon->name);
+		}
 	}
 	
 	/**
@@ -203,7 +211,7 @@ class CLI_Xf_Addon extends CLI
 	}
 	
 	/**
-	 * Attempt to retreive addon config file for given addon
+	 * Attempt to retrieve addon config file for given addon
 	 * 
 	 * @param		array|string		$addon
 	 * 

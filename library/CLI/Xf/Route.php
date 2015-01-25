@@ -11,7 +11,7 @@ class CLI_Xf_Route extends CLI {
 	protected $_help = '
 		Possible commands:
 		
-		(you can excute these commands with --help to view their instructions)
+		(you can execute these commands with --help to view their instructions)
 		
 		xf route ..
 			- add

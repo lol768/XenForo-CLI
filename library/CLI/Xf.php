@@ -5,13 +5,13 @@
  */
 class CLI_Xf extends CLI
 {
-	
+
 	protected $_help = '
 		Possible commands:
 		
-		(you can excute these commands with --help to view their instructions)
-		
-			Addons
+		(you can execute these commands with --help to view their instructions)
+
+			<cg><b>Addons<cn>
 		
 				- addon
 				- addon add
@@ -22,7 +22,7 @@ class CLI_Xf extends CLI
 				- addon show
 				- addon uninstall
 			
-			Code Events
+			<cg><b>Code Events<cn>
 			
 				- extend
 				- extend add
@@ -30,19 +30,23 @@ class CLI_Xf extends CLI
 				- listener add
 				- listener delete
 			
-			Phrases
+			<cg><b>Phrases<cn>
 			
 				- phrase add
 				- phrase find
 				- phrase get
 			
-			Templates
+			<cg><b>Templates<cn>
 			
 				- template add
 			
-			Routes
+			<cg><b>Routes<cn>
 			
 				- route add
+
+			<cg><b>System<cn>
+
+				- debug
 	';
 	
 	/**

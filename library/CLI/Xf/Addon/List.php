@@ -5,18 +5,18 @@
  */
 class CLI_Xf_Addon_List extends CLI
 {
-	
+
 	/**
 	 * Run the command
 	 *
-	 * @return	void							
+	 * @return	void
 	 */
 	public function run()
 	{
 		$addonModel = XenForo_Model::create('XenForo_Model_AddOn');
 		$addons 	= $addonModel->getAllAddOns();
 		$haddons 	= array();
-		
+
 		foreach ($addons AS $addon)
 		{
 			$haddons[] = array(
@@ -26,8 +26,14 @@ class CLI_Xf_Addon_List extends CLI
 				'Status'	=> $addon['active'] ? 'Enabled' : $this->colorText('Disabled', self::RED)
 			);
 		}
-		
-		$this->printTable($haddons);
+		if (count($haddons) === 0)
+        {
+			$this->printMessage("There are no addons installed.");
+        }
+		else
+		{
+			$this->printTable($haddons);
+		}
 	}
-	
+
 }
