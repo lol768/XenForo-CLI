@@ -23,6 +23,7 @@ class CLI_Xf extends CLI
 				- addon select
 				- addon show
 				- addon uninstall
+				- addon export
 			
 			<cg><b>Code Events<cn>
 				- extend
